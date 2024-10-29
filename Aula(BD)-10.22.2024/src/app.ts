@@ -5,7 +5,11 @@ import {pool} from './database';
 import path from 'path';
 
 const app = express();
-const port = 
+const port = 3000;
+
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`)
+})
 
 // configurar o middlewhere para arquivos estáticos
 
