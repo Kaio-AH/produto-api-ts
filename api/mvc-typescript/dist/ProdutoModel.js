@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProdutoModel = void 0;
-const database_1 = require("./database");
+const database_1 = require("./../src/database");
 class ProdutoModel {
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -18,22 +18,22 @@ class ProdutoModel {
             return rows;
         });
     }
-    //Create
+    //CREATE
     create(produto) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.pool.query('INSTER INTO produtos (nome,preco) VALUES (?,?)', [produto.nome, produto.preco]);
+            yield database_1.pool.query('INSERT INTO produtos (nome, preco) VALUES(?, ? )', [produto.nome, produto.preco]);
         });
     }
-    //Update
+    // UPDATE
     update(id, produto) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.pool.query('UPDATE produtos SET nome = ?, preco = ? WHERE id = ?', [produto.nome, produto.preco, id]);
         });
     }
-    //Delete 
+    // DELETE
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.pool.query('DELETE FROM produtos WHERE id = ?', [id]);
+            yield database_1.pool.query('DELETE FROM produtos WHERE id = ? ', [id]);
         });
     }
 }

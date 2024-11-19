@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteProduto = exports.updateProduto = exports.createProduto = exports.getProdutos = void 0;
-const ProdutoModel_1 = require("./ProdutoModel");
+const ProdutoModel_1 = require("./../src/ProdutoModel");
 const produtoModel = new ProdutoModel_1.ProdutoModel();
 const getProdutos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -18,7 +18,7 @@ const getProdutos = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.json(produtos);
     }
     catch (error) {
-        res.status(500).json({ message: "Erro ao acessar produtos" });
+        res.status(500).json({ message: "Erro ao buscar produtos" });
     }
 });
 exports.getProdutos = getProdutos;
@@ -26,10 +26,10 @@ const createProduto = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const { nome, preco } = req.body;
         yield produtoModel.create({ nome, preco });
-        res.status(201).json({ message: "Produto criado com sucesso" });
+        res.status(201).json({ message: 'Produto criado com sucesso' });
     }
     catch (error) {
-        res.status(500).json({ message: "Erro ao criar Produtos" });
+        res.status(500).json({ message: 'Erro ao criar produto' });
     }
 });
 exports.createProduto = createProduto;
@@ -38,10 +38,10 @@ const updateProduto = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const { id } = req.params;
         const { nome, preco } = req.body;
         yield produtoModel.update(Number(id), { nome, preco });
-        res.json({ message: "Produto atualizado com sucesso" });
+        res.json({ message: 'Produto atualizado com sucesso ' });
     }
     catch (error) {
-        res.status(500).json({ message: "Erro ao atualizar o produto" });
+        res.status(500).json({ message: 'Erro ao atualizar produto' });
     }
 });
 exports.updateProduto = updateProduto;
@@ -49,10 +49,10 @@ const deleteProduto = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const { id } = req.params;
         yield produtoModel.delete(Number(id));
-        res.json({ message: "Produto deletado com sucesso" });
+        res.json({ message: 'Produto deletado com sucesso' });
     }
     catch (error) {
-        res.status(500).json({ message: "Erro ao deletar" });
+        res.status(500).json({ message: 'Erro ao deletar produto' });
     }
 });
 exports.deleteProduto = deleteProduto;
